@@ -1,4 +1,10 @@
-import { Controller, Get, Query, HttpException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { FibService } from './fib.service';
 
 @Controller('fib')
@@ -11,12 +17,7 @@ export class FibController {
         result: this.fibService.calclation(number),
       };
     } catch (e) {
-      if (e instanceof HttpException) {
-        return {
-          status: e.getStatus(),
-          message: e.message,
-        };
-      }
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }
   }
 }

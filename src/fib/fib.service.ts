@@ -1,13 +1,10 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class FibService {
   calclation(number: number) {
     if (number <= 0) {
-      throw new HttpException(
-        'number must be positive',
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new Error('number must be a positive');
     } else if (number === 1) {
       return 0;
     } else if (number === 2) {
