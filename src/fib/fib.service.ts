@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class FibService {
   calclation(number: number) {
-    if (number <= 0) {
+    if (number <= 0 || isNaN(number)) {
       throw new Error('number must be a positive');
     } else if (number === 1) {
       return 0;
